@@ -1,6 +1,6 @@
 # Imported Atria Source Manifest
 
-Imported from the two source archives supplied September 26, 2026. Original binary documents are represented in Git as diff-friendly Markdown unless the artifact is already a text format. SHA-256 values below identify the exact supplied source files.
+Imported from the Atria engineering, governance, historical Arbitis, and Quorum source archives supplied September 26, 2026. Original binary documents are represented in Git as diff-friendly Markdown unless the artifact is already a text format. SHA-256 values below identify the exact supplied source files.
 
 | Source file | SHA-256 | Bytes |
 |---|---|---:|
@@ -22,9 +22,18 @@ Imported from the two source archives supplied September 26, 2026. Original bina
 | `Atria Partner & Project Governance/Atria Project Posture.docx` | `26d02737c301b3592b175c171731df6cf648f51c806325add315e284b12cc2d8` | 10745 |
 | `Atria Partner & Project Governance/Atria Stewardship Agreement.docx` | `ebf070d45642da8581b94becba6a2fc730fa324fb9a4647316cd93c983485a1d` | 12654 |
 | `Atria Partner & Project Governance/Thermacube #U00d7 Atria Deployment Requirements.docx` | `11e0ad219cd0b5169ddaef567807f501226c93d6b84264259945a05d7e72c966` | 13256 |
+| `rights-rebac-v1.3.0-20260926T103631Z-1-001.zip` | `919e89cffceba2b469c4c1c1bf26301d53f559bf56f6aeff095123b246780da8` | 102635 |
+| `rights-rebac-v1.3.0/Atria_Rights_ReBAC_ODRL_Specification_v1_3_0.md` | `95fad659e471f35af963a55b94bffc68d148667c12414c7e6f7d7af644162045` | 19250 |
+| `Atria - Quorum LLMRuntime-20260926T103944Z-1-001(1).zip` | `57a163c70f7949fbc949fe9e245416c2793e9ba812ad7f14991994057c75889b` | 612860 |
+| `Atria - Quorum LLMRuntime/quorum_specs/spec/quorum-platform.openapi.yaml` | `1526587ce2254a954c6709f35e2a825a0fb2b7fd993ea0ffaf1a33a3cf4e4cf2` | 12611 |
+| `Atria - Quorum LLMRuntime/quorum_specs/spec/openai-compat.openapi.yaml` | `fc6c9bcb145b3fc484ea79224020bc673aa788b2329b3db9cdce87b63136808a` | 6321 |
+| `Atria - Quorum LLMRuntime/OpenAI-compatible façade Swagger spec.docx` | `fd2405140860dbbb3ad2dd8c14f6ae75fe9ec4316b9f68c817c970bfc74c7f5f` | 231291 |
+| `Atria - Quorum LLMRuntime/Thermacube AI Platform Roadmap.docx` | `1056e29d8fb9805e5aa4824824b6697726e3c6725efe1b3ecb4a2d0e4bd15632` | 371864 |
 
 ## Import notes
 
 - Source binaries remain externally archived; Git stores normalized, diff-friendly text representations and machine-readable contracts.
 - The filename `Ordin_BPMN_Execution_Spec_0.1.2.rtf` identifies v0.1.2, while its internal revision line still states v0.1.1 dated 2025-12-16. The source is preserved without silently correcting that discrepancy.
 - The governing source set was supplied by the project owner on 2026-09-26 and is being imported without changing substantive requirements.
+- Rights/ReBAC v1.3.0 is preserved under `history/` because the Atria implementation currently carries the later Arbitis v1.5.0 line.
+- Quorum v0.1.0 contracts are imported as the current supplied Quorum specification baseline.
