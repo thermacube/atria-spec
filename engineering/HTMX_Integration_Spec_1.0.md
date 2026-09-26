@@ -711,6 +711,18 @@ The following are non-conforming by default:
 
 ---
 
+### 38.1 Internationalization and locale context
+
+The Thermacube Application Internationalization & Localization Specification governs locale resolution and multilingual rendering.
+
+Full-page and fragment responses MUST resolve the same authoritative locale context. Canonical/history URLs must preserve the application's documented locale semantics.
+
+A locale change that changes document-wide `lang` or `dir` SHOULD use a full-document transition rather than partially swapping an opposite-language/direction shell into the current document.
+
+Localized status, error, loading, validation, and accessible-name strings follow the same catalog and locale context as the surrounding application.
+
+---
+
 ## 39. Initial Thermacube profiles
 
 ### Atria
