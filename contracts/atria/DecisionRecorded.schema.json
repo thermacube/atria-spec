@@ -1,0 +1,61 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://thermacube.org/atria/schemas/subtypes/DecisionRecorded.schema.json",
+  "title": "DecisionRecorded (DECISION) message",
+  "allOf": [
+    {
+      "$ref": "../envelope.schema.json"
+    },
+    {
+      "type": "object",
+      "properties": {
+        "message_type": {
+          "const": "DECISION"
+        },
+        "subtype": {
+          "const": "DecisionRecorded"
+        },
+        "payload": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "decision_id": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "evaluated_fact_ids": {
+              "type": "string"
+            },
+            "decision_type": {
+              "type": "string",
+              "enum": [
+                "advance",
+                "complete",
+                "remediate",
+                "suspend",
+                "no_op"
+              ]
+            },
+            "decision_reason": {
+              "type": "string"
+            },
+            "decided_at": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          "required": [
+            "decision_id",
+            "evaluated_fact_ids",
+            "decision_type",
+            "decision_reason",
+            "decided_at"
+          ]
+        }
+      },
+      "required": [
+        "payload"
+      ]
+    }
+  ]
+}
