@@ -1,0 +1,469 @@
+openapi: 3.1.0
+info:
+  title: Quorum Platform API
+  version: "0.1.0"
+  description: Internal platform endpoints for jobs, libraries, documents, and artifacts.
+servers:
+  - url: https://ai.thermacube.internal
+security:
+  - bearerAuth: []
+tags:
+  - name: jobs
+  - name: libraries
+  - name: artifacts
+  - name: admin
+
+paths:
+  /jobs:
+    post:
+      tags: [jobs]
+      summary: Create a long-running job (SOP workflow)
+      operationId: createJob
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: "#/components/schemas/CreateJobRequest" }
+      responses:
+        "202":
+          description: Accepted
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/Job" }
+    get:
+      tags: [jobs]
+      summary: List jobs (filterable)
+      operationId: listJobs
+      parameters:
+        - in: query
+          name: status
+          schema: { type: string }
+        - in: query
+          name: persona
+          schema: { type: string }
+        - in: query
+          name: limit
+          schema: { type: integer, minimum: 1, maximum: 200, default: 50 }
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/JobList" }
+
+  /jobs/{job_id}:
+    get:
+      tags: [jobs]
+      summary: Get job status
+      operationId: getJob
+      parameters:
+        - in: path
+          name: job_id
+          required: true
+          schema: { type: string }
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/Job" }
+        "404":
+          description: Not found
+    post:
+      tags: [jobs]
+      summary: Control a job (cancel, retry)
+      operationId: controlJob
+      parameters:
+        - in: path
+          name: job_id
+          required: true
+          schema: { type: string }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: "#/components/schemas/JobControlRequest" }
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/Job" }
+
+  /jobs/{job_id}/artifacts:
+    get:
+      tags: [artifacts]
+      summary: List artifacts produced by a job
+      operationId: listJobArtifacts
+      parameters:
+        - in: path
+          name: job_id
+          required: true
+          schema: { type: string }
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/ArtifactList" }
+
+  /artifacts/{artifact_id}:
+    get:
+      tags: [artifacts]
+      summary: Get artifact metadata
+      operationId: getArtifact
+      parameters:
+        - in: path
+          name: artifact_id
+          required: true
+          schema: { type: string }
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/Artifact" }
+        "404":
+          description: Not found
+
+  /artifacts/{artifact_id}/content:
+    get:
+      tags: [artifacts]
+      summary: Download artifact content
+      operationId: downloadArtifactContent
+      parameters:
+        - in: path
+          name: artifact_id
+          required: true
+          schema: { type: string }
+      responses:
+        "200":
+          description: Artifact bytes
+          content:
+            application/octet-stream: {}
+        "404":
+          description: Not found
+
+  /libraries:
+    post:
+      tags: [libraries]
+      summary: Create a content library
+      operationId: createLibrary
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: "#/components/schemas/CreateLibraryRequest" }
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/Library" }
+    get:
+      tags: [libraries]
+      summary: List libraries
+      operationId: listLibraries
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/LibraryList" }
+
+  /libraries/{library_id}/documents:
+    post:
+      tags: [libraries]
+      summary: Register/upload a document into a library
+      operationId: uploadDocument
+      parameters:
+        - in: path
+          name: library_id
+          required: true
+          schema: { type: string }
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              $ref: "#/components/schemas/UploadDocumentForm"
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/Document" }
+    get:
+      tags: [libraries]
+      summary: List documents in a library
+      operationId: listDocuments
+      parameters:
+        - in: path
+          name: library_id
+          required: true
+          schema: { type: string }
+        - in: query
+          name: doc_type
+          schema: { type: string }
+        - in: query
+          name: version
+          schema: { type: string }
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/DocumentList" }
+
+  /libraries/{library_id}/ingest:
+    post:
+      tags: [libraries]
+      summary: Enqueue ingestion (parse/chunk/embed) for documents in a library
+      operationId: ingestLibrary
+      parameters:
+        - in: path
+          name: library_id
+          required: true
+          schema: { type: string }
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema: { $ref: "#/components/schemas/IngestRequest" }
+      responses:
+        "202":
+          description: Accepted
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/IngestResponse" }
+
+  /admin/personas:
+    get:
+      tags: [admin]
+      summary: List personas
+      operationId: listPersonas
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/PersonaList" }
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+
+  schemas:
+    CreateJobRequest:
+      type: object
+      additionalProperties: false
+      properties:
+        persona:
+          type: string
+          description: Logical persona name (architect, developer, learning_designer, etc.)
+        workflow:
+          type: string
+          description: SOP workflow name (build_course_from_outline, spec_audit, etc.)
+        library_id:
+          type: string
+        inputs:
+          type: object
+          additionalProperties: true
+          description: Workflow-specific inputs (doc ids, outline id, template ids, etc.)
+        options:
+          type: object
+          additionalProperties: true
+          description: Optional execution settings (iteration limits, strictness, etc.)
+      required: [persona, workflow, library_id, inputs]
+
+    Job:
+      type: object
+      additionalProperties: false
+      properties:
+        job_id: { type: string }
+        status:
+          type: string
+          enum: [queued, running, waiting, succeeded, failed, canceled]
+        persona: { type: string }
+        workflow: { type: string }
+        library_id: { type: string }
+        progress:
+          type: object
+          additionalProperties: true
+        created_at: { type: string, format: date-time }
+        updated_at: { type: string, format: date-time }
+        error:
+          type: object
+          additionalProperties: true
+      required: [job_id, status, persona, workflow, library_id, created_at, updated_at]
+
+    JobList:
+      type: object
+      additionalProperties: false
+      properties:
+        items:
+          type: array
+          items: { $ref: "#/components/schemas/Job" }
+      required: [items]
+
+    JobControlRequest:
+      type: object
+      additionalProperties: false
+      properties:
+        action:
+          type: string
+          enum: [cancel, retry]
+        reason:
+          type: string
+      required: [action]
+
+    Artifact:
+      type: object
+      additionalProperties: false
+      properties:
+        artifact_id: { type: string }
+        job_id: { type: string }
+        kind:
+          type: string
+          description: e.g., lesson_markdown, course_plan_json, audit_report, zip_bundle
+        filename: { type: string }
+        mime_type: { type: string }
+        bytes: { type: integer }
+        sha256: { type: string }
+        created_at: { type: string, format: date-time }
+        metadata:
+          type: object
+          additionalProperties: true
+      required: [artifact_id, job_id, kind, filename, mime_type, created_at]
+
+    ArtifactList:
+      type: object
+      additionalProperties: false
+      properties:
+        items:
+          type: array
+          items: { $ref: "#/components/schemas/Artifact" }
+      required: [items]
+
+    CreateLibraryRequest:
+      type: object
+      additionalProperties: false
+      properties:
+        name: { type: string }
+        description: { type: string }
+        tenant_id: { type: string }
+      required: [name, tenant_id]
+
+    Library:
+      type: object
+      additionalProperties: false
+      properties:
+        library_id: { type: string }
+        tenant_id: { type: string }
+        name: { type: string }
+        description: { type: string }
+        created_at: { type: string, format: date-time }
+      required: [library_id, tenant_id, name, created_at]
+
+    LibraryList:
+      type: object
+      additionalProperties: false
+      properties:
+        items:
+          type: array
+          items: { $ref: "#/components/schemas/Library" }
+      required: [items]
+
+    UploadDocumentForm:
+      type: object
+      additionalProperties: false
+      properties:
+        file:
+          type: string
+          format: binary
+        doc_type:
+          type: string
+          description: e.g., outline, source, template, rubric, reference
+        version:
+          type: string
+          description: Optional version label (e.g., v3)
+        metadata:
+          type: string
+          description: Optional JSON string
+      required: [file, doc_type]
+
+    Document:
+      type: object
+      additionalProperties: false
+      properties:
+        doc_id: { type: string }
+        library_id: { type: string }
+        filename: { type: string }
+        doc_type: { type: string }
+        version: { type: string }
+        mime_type: { type: string }
+        bytes: { type: integer }
+        sha256: { type: string }
+        storage_path: { type: string }
+        created_at: { type: string, format: date-time }
+      required: [doc_id, library_id, filename, doc_type, mime_type, sha256, created_at]
+
+    DocumentList:
+      type: object
+      additionalProperties: false
+      properties:
+        items:
+          type: array
+          items: { $ref: "#/components/schemas/Document" }
+      required: [items]
+
+    IngestRequest:
+      type: object
+      additionalProperties: false
+      properties:
+        doc_ids:
+          type: array
+          items: { type: string }
+          description: If omitted, ingest all docs in the library.
+        embed:
+          type: boolean
+          default: true
+        chunk:
+          type: boolean
+          default: true
+        parse:
+          type: boolean
+          default: true
+        options:
+          type: object
+          additionalProperties: true
+      required: []
+
+    IngestResponse:
+      type: object
+      additionalProperties: false
+      properties:
+        accepted: { type: boolean }
+        job_id: { type: string }
+      required: [accepted, job_id]
+
+    PersonaList:
+      type: object
+      additionalProperties: false
+      properties:
+        items:
+          type: array
+          items: { $ref: "#/components/schemas/Persona" }
+      required: [items]
+
+    Persona:
+      type: object
+      additionalProperties: false
+      properties:
+        persona: { type: string }
+        capability: { type: string }
+        default_model: { type: string }
+        notes: { type: string }
+      required: [persona, capability, default_model]
