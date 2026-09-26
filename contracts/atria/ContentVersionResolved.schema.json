@@ -1,0 +1,109 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://thermacube.org/atria/schemas/subtypes/ContentVersionResolved.schema.json",
+  "title": "ContentVersionResolved (FACT) message",
+  "allOf": [
+    {
+      "$ref": "../envelope.schema.json"
+    },
+    {
+      "type": "object",
+      "properties": {
+        "message_type": {
+          "const": "FACT"
+        },
+        "subtype": {
+          "const": "ContentVersionResolved"
+        },
+        "payload": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "content_id": {
+              "type": "string"
+            },
+            "resolved_version": {
+              "type": "string"
+            },
+            "content_hash": {
+              "type": "string"
+            },
+            "resolved_at": {
+              "type": "string"
+            },
+            "A.7": {
+              "type": "string"
+            },
+            "IdentityAttributeChanged": {
+              "type": "string"
+            },
+            "Required": {
+              "type": "string"
+            },
+            "identity_id": {
+              "type": "string"
+            },
+            "attribute_name": {
+              "type": "string"
+            },
+            "prior_value_reference": {
+              "type": "string"
+            },
+            "new_value_reference": {
+              "type": "string"
+            },
+            "authority_source": {
+              "type": "string"
+            },
+            "changed_at": {
+              "type": "string"
+            },
+            "TenantCreated": {
+              "type": "string"
+            },
+            "tenant_id": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "created_at": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "created_by": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "provisioning_request_id": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          "required": [
+            "content_id",
+            "resolved_version",
+            "content_hash",
+            "resolved_at",
+            "A.7",
+            "IdentityAttributeChanged",
+            "Required",
+            "identity_id",
+            "attribute_name",
+            "prior_value_reference",
+            "new_value_reference",
+            "authority_source",
+            "changed_at",
+            "TenantCreated",
+            "Required",
+            "tenant_id",
+            "created_at",
+            "created_by",
+            "provisioning_request_id"
+          ]
+        }
+      },
+      "required": [
+        "payload"
+      ]
+    }
+  ]
+}
