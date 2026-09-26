@@ -587,7 +587,7 @@ Applications explicitly adopt a version. They do not automatically conform to fu
 
 Normative and supporting references:
 
-- W3C Web Content Accessibility Guidelines (WCAG) 2.2
-- W3C Accessible Rich Internet Applications (WAI-ARIA) 1.2
-- W3C/WAI ARIA Authoring Practices Guide (APG)
-- W3C/WAI WCAG Evaluation Methodology (WCAG-EM) 2.0
+- W3C Web Content Accessibility Guidelines (WCAG) 2.2 — https://www.w3.org/TR/WCAG22/
+- W3C Accessible Rich Internet Applications (WAI-ARIA) 1.2 — https://www.w3.org/TR/wai-aria-1.2/
+- W3C/WAI ARIA Authoring Practices Guide (APG) — https://www.w3.org/WAI/ARIA/apg/
+- W3C/WAI WCAG Evaluation Methodology (WCAG-EM) 2.0 — https://www.w3.org/TR/WCAG-EM/
