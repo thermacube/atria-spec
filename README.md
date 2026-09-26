@@ -32,3 +32,8 @@ The shared **Application Accessibility Specification v1.0** establishes WCAG 2.2
 The shared **Application UI Design Specification v1.0** defines Thermacube Minimal UI (TMUI): semantic HTML, locally owned CSS/tokens/assets, HTMX-driven progressive interaction, minimal JavaScript, zero uncontrolled remote UI dependencies, and a compact cross-application visual language. Its reference implementation lives in `thermacube/tmui`.
 
 See `SPECIFICATION-INDEX.md` for the imported specification inventory and authority notes.
+
+
+The shared **HTMX Integration Specification v1.0** defines the cross-application hypermedia contract: locally pinned HTMX, semantic links/forms, progressive enhancement, server-rendered HTML, truthful canonical URLs/history, coherent fragment swaps, minimal client state, accessibility-aware focus/loading/live-region behavior, and server-authoritative security/domain outcomes.
+
+The shared **Application Information Architecture & Screen Layout Specification v1.0** defines the Thermacube application shell and information hierarchy: task-oriented navigation, high-information-scent labels, brand/global-utility placement, search hierarchy, account and Comms placement, notification hierarchy, page structure, optional local navigation, responsive behavior, landmarks, and minimal footer conventions.
