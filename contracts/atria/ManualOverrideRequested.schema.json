@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://thermacube.org/atria/schemas/subtypes/ManualOverrideRequested.schema.json",
+  "title": "ManualOverrideRequested (REQUEST) message",
+  "allOf": [
+    {
+      "$ref": "../envelope.schema.json"
+    },
+    {
+      "type": "object",
+      "properties": {
+        "message_type": {
+          "const": "REQUEST"
+        },
+        "subtype": {
+          "const": "ManualOverrideRequested"
+        },
+        "payload": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "override_type": {
+              "type": "string",
+              "enum": [
+                "complete",
+                "pass",
+                "waive",
+                "reset"
+              ]
+            },
+            "reason_code": {
+              "type": "string"
+            },
+            "requested_by": {
+              "type": "string"
+            },
+            "requested_at": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          "required": [
+            "override_type",
+            "reason_code",
+            "requested_by",
+            "requested_at"
+          ]
+        }
+      },
+      "required": [
+        "payload"
+      ]
+    }
+  ]
+}
