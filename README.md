@@ -27,4 +27,6 @@ The current supplied Atria constitutional engineering line culminates in `Atria_
 
 The shared **Application Request Perimeter Specification v1.0** and Atria adoption document are maintained alongside these governing specifications and apply to the Atria runtime boundary.
 
+The shared **Application Accessibility Specification v1.0** establishes WCAG 2.2 Level AA as the common product target, with WAI-ARIA 1.2 semantics, ARIA APG implementation guidance, and WCAG-EM 2.0 evaluation methodology. Atria's adoption document defines platform/module responsibilities.
+
 See `SPECIFICATION-INDEX.md` for the imported specification inventory and authority notes.
