@@ -16,6 +16,7 @@ This index describes the governing material currently preserved in `thermacube/a
 - `engineering/Application_Request_Perimeter_Adoption_Atria_1.0.md`
 - `engineering/Application_Accessibility_Spec_1.0.md`
 - `engineering/Application_Accessibility_Adoption_Atria_1.0.md`
+- `engineering/Application_UI_Design_Spec_1.0.md`
 
 ## Module engineering specifications
 

@@ -29,4 +29,6 @@ The shared **Application Request Perimeter Specification v1.0** and Atria adopti
 
 The shared **Application Accessibility Specification v1.0** establishes WCAG 2.2 Level AA as the common product target, with WAI-ARIA 1.2 semantics, ARIA APG implementation guidance, and WCAG-EM 2.0 evaluation methodology. Atria's adoption document defines platform/module responsibilities.
 
+The shared **Application UI Design Specification v1.0** defines Thermacube Minimal UI (TMUI): semantic HTML, locally owned CSS/tokens/assets, HTMX-driven progressive interaction, minimal JavaScript, zero uncontrolled remote UI dependencies, and a compact cross-application visual language. Its reference implementation lives in `thermacube/tmui`.
+
 See `SPECIFICATION-INDEX.md` for the imported specification inventory and authority notes.
