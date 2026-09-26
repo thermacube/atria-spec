@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://thermacube.org/atria/schemas/subtypes/ToolCompletionClaimReceived.schema.json",
+  "title": "ToolCompletionClaimReceived (CLAIM) message",
+  "allOf": [
+    {
+      "$ref": "../envelope.schema.json"
+    },
+    {
+      "type": "object",
+      "properties": {
+        "message_type": {
+          "const": "CLAIM"
+        },
+        "subtype": {
+          "const": "ToolCompletionClaimReceived"
+        },
+        "payload": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "tool_type": {
+              "type": "string",
+              "enum": [
+                "LTI",
+                "xAPI",
+                "other"
+              ]
+            },
+            "claim_type": {
+              "type": "string",
+              "enum": [
+                "completed",
+                "passed",
+                "failed"
+              ]
+            },
+            "raw_payload_reference": {
+              "type": "string"
+            },
+            "raw_payload_hash": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "tool_type",
+            "claim_type",
+            "raw_payload_reference",
+            "raw_payload_hash"
+          ]
+        }
+      },
+      "required": [
+        "payload"
+      ]
+    }
+  ]
+}

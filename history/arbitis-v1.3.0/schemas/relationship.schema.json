@@ -1,0 +1,65 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Atria Rights Relationship",
+  "type": "object",
+  "required": [
+    "subject",
+    "relation",
+    "object"
+  ],
+  "properties": {
+    "subject": {
+      "type": "string"
+    },
+    "relation": {
+      "type": "string"
+    },
+    "object": {
+      "type": "string"
+    },
+    "effect": {
+      "enum": [
+        "allow",
+        "deny"
+      ]
+    },
+    "actions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "effectiveFrom": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time"
+    },
+    "effectiveUntil": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time"
+    },
+    "conditions": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "obligations": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "sourcePolicy": {
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  }
+}

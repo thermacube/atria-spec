@@ -1,0 +1,15 @@
+{
+  "module": "h5p",
+  "entityTypes": [
+    "activity",
+    "workspace"
+  ],
+  "actions": [
+    "h5p:install-library"
+  ],
+  "healthDomain": "module:h5p",
+  "storage": {
+    "rootEnv": "H5P_STORAGE_ROOT"
+  },
+  "legacyParityFixture": null
+}

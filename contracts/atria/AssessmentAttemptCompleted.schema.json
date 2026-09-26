@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://thermacube.org/atria/schemas/subtypes/AssessmentAttemptCompleted.schema.json",
+  "title": "AssessmentAttemptCompleted (FACT) message",
+  "allOf": [
+    {
+      "$ref": "../envelope.schema.json"
+    },
+    {
+      "type": "object",
+      "properties": {
+        "message_type": {
+          "const": "FACT"
+        },
+        "subtype": {
+          "const": "AssessmentAttemptCompleted"
+        },
+        "payload": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "assessment_id": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "attempt_id": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "completion_status": {
+              "type": "string",
+              "enum": [
+                "completed",
+                "exited",
+                "timed_out"
+              ]
+            },
+            "payload_reference": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "assessment_id",
+            "attempt_id",
+            "completion_status"
+          ]
+        }
+      },
+      "required": [
+        "payload"
+      ]
+    }
+  ]
+}

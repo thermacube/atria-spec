@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://thermacube.org/atria/schemas/subtypes/ContentAccessRecorded.schema.json",
+  "title": "ContentAccessRecorded (FACT) message",
+  "allOf": [
+    {
+      "$ref": "../envelope.schema.json"
+    },
+    {
+      "type": "object",
+      "properties": {
+        "message_type": {
+          "const": "FACT"
+        },
+        "subtype": {
+          "const": "ContentAccessRecorded"
+        },
+        "payload": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "content_id": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "content_version_id": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "content_version": {
+              "type": "string"
+            },
+            "content_hash": {
+              "type": "string"
+            },
+            "accessed_at": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          "required": [
+            "content_id",
+            "content_version_id",
+            "accessed_at"
+          ]
+        }
+      },
+      "required": [
+        "payload"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,105 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://thermacube.org/atria/schemas/subtypes/RegradeRequested.schema.json",
+  "title": "RegradeRequested (REQUEST) message",
+  "allOf": [
+    {
+      "$ref": "../envelope.schema.json"
+    },
+    {
+      "type": "object",
+      "properties": {
+        "message_type": {
+          "const": "REQUEST"
+        },
+        "subtype": {
+          "const": "RegradeRequested"
+        },
+        "payload": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "attempt_id": {
+              "type": "string"
+            },
+            "requested_by": {
+              "type": "string"
+            },
+            "reason_code": {
+              "type": "string"
+            },
+            "requested_at": {
+              "type": "string"
+            },
+            "A.4": {
+              "type": "string"
+            },
+            "A.4.1": {
+              "type": "string"
+            },
+            "StandardsPayloadReceived": {
+              "type": "string"
+            },
+            "Required": {
+              "type": "string"
+            },
+            "standard": {
+              "type": "string"
+            },
+            "standard_version": {
+              "type": "string"
+            },
+            "raw_payload_reference": {
+              "type": "string"
+            },
+            "raw_payload_hash": {
+              "type": "string"
+            },
+            "received_at": {
+              "type": "string"
+            },
+            "StandardsPayloadClassified": {
+              "type": "string"
+            },
+            "classification_key": {
+              "type": "string"
+            },
+            "classification_value": {
+              "type": "string"
+            },
+            "tool_id": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "attempt_id",
+            "requested_by",
+            "reason_code",
+            "requested_at",
+            "A.4",
+            "A.4.1",
+            "StandardsPayloadReceived",
+            "Required",
+            "standard",
+            "standard_version",
+            "raw_payload_reference",
+            "raw_payload_hash",
+            "received_at",
+            "StandardsPayloadClassified",
+            "Required",
+            "standard",
+            "standard_version",
+            "classification_key",
+            "classification_value",
+            "tool_id",
+            "raw_payload_reference",
+            "raw_payload_hash"
+          ]
+        }
+      },
+      "required": [
+        "payload"
+      ]
+    }
+  ]
+}

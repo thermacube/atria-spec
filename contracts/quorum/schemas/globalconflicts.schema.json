@@ -1,0 +1,72 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://thermacube.internal/schemas/globalconflicts.schema.json",
+  "title": "GlobalConflicts",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "library_id": {
+      "type": "string"
+    },
+    "version": {
+      "type": "string"
+    },
+    "conflicts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "conflict_id": {
+            "type": "string"
+          },
+          "severity": {
+            "type": "string",
+            "enum": [
+              "critical",
+              "major",
+              "minor"
+            ]
+          },
+          "summary": {
+            "type": "string"
+          },
+          "involved_docs": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "evidence_refs": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "recommended_resolution": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "severity",
+          "summary"
+        ]
+      }
+    },
+    "missing_contracts": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "risk_areas": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "required": [
+    "conflicts"
+  ]
+}

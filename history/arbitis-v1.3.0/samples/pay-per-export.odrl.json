@@ -1,0 +1,31 @@
+{
+  "@context": [
+    "http://www.w3.org/ns/odrl.jsonld",
+    {
+      "atria": "https://rights.atria.example/"
+    }
+  ],
+  "@type": "Offer",
+  "uid": "https://rights.example/policy/pay-per-export",
+  "profile": "https://rights.atria.example/profile/1",
+  "permission": [
+    {
+      "target": "urn:atria:arkiv-resource:example",
+      "action": "atria:export",
+      "assignee": "urn:atria:public:anonymous",
+      "duty": [
+        {
+          "action": "compensate",
+          "refinement": [
+            {
+              "leftOperand": "payAmount",
+              "operator": "eq",
+              "rightOperand": 5.0,
+              "unit": "https://rights.atria.example/currency/USD"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://thermacube.org/atria/schemas/subtypes/TenantArchived.schema.json",
+  "title": "TenantArchived (FACT) message",
+  "allOf": [
+    {
+      "$ref": "../envelope.schema.json"
+    },
+    {
+      "type": "object",
+      "properties": {
+        "message_type": {
+          "const": "FACT"
+        },
+        "subtype": {
+          "const": "TenantArchived"
+        },
+        "payload": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "tenant_id": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "archived_at": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "archived_by": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "archive_ref": {
+              "type": "string"
+            },
+            "archive_hash": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "tenant_id",
+            "archived_at",
+            "archived_by",
+            "archive_ref"
+          ]
+        }
+      },
+      "required": [
+        "payload"
+      ]
+    }
+  ]
+}

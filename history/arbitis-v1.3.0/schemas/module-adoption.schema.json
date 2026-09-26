@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": [
+    "module",
+    "entityTypes",
+    "actions",
+    "storage"
+  ],
+  "properties": {
+    "module": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_-]{0,63}$"
+    },
+    "entityTypes": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^[a-z][a-z0-9_-]{0,63}$"
+      }
+    },
+    "actions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "healthDomain": {
+      "type": "string",
+      "pattern": "^module:[a-z][a-z0-9_-]{0,63}$"
+    },
+    "storage": {
+      "type": "object",
+      "required": [
+        "rootEnv"
+      ],
+      "properties": {
+        "rootEnv": {
+          "type": "string",
+          "pattern": "^[A-Z][A-Z0-9_]+_STORAGE_ROOT$"
+        }
+      }
+    },
+    "legacyParityFixture": {
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  },
+  "additionalProperties": true
+}

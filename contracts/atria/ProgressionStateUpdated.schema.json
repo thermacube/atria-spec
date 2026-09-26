@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://thermacube.org/atria/schemas/subtypes/ProgressionStateUpdated.schema.json",
+  "title": "ProgressionStateUpdated (DECISION) message",
+  "allOf": [
+    {
+      "$ref": "../envelope.schema.json"
+    },
+    {
+      "type": "object",
+      "properties": {
+        "message_type": {
+          "const": "DECISION"
+        },
+        "subtype": {
+          "const": "ProgressionStateUpdated"
+        },
+        "payload": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "prior_state": {
+              "type": "string"
+            },
+            "new_state": {
+              "type": "string"
+            },
+            "decision_id": {
+              "type": "string"
+            },
+            "updated_at": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          "required": [
+            "prior_state",
+            "new_state",
+            "decision_id",
+            "updated_at"
+          ]
+        }
+      },
+      "required": [
+        "payload"
+      ]
+    }
+  ]
+}
