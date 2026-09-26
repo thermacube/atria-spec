@@ -1,0 +1,138 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://thermacube.org/atria/schemas/subtypes/AssessmentAttemptSubmitted.schema.json",
+  "title": "AssessmentAttemptSubmitted (FACT) message",
+  "allOf": [
+    {
+      "$ref": "../envelope.schema.json"
+    },
+    {
+      "type": "object",
+      "properties": {
+        "message_type": {
+          "const": "FACT"
+        },
+        "subtype": {
+          "const": "AssessmentAttemptSubmitted"
+        },
+        "payload": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "attempt_id": {
+              "type": "string"
+            },
+            "submitted_at": {
+              "type": "string"
+            },
+            "submission_reference": {
+              "type": "string"
+            },
+            "AssessmentScoreSuperseded": {
+              "type": "string"
+            },
+            "Required": {
+              "type": "string"
+            },
+            "superseded_score_fact_id": {
+              "type": "string"
+            },
+            "new_score": {
+              "type": "string"
+            },
+            "reason_code": {
+              "type": "string"
+            },
+            "A.3.2": {
+              "type": "string"
+            },
+            "RegradeRequested": {
+              "type": "string"
+            },
+            "requested_by": {
+              "type": "string"
+            },
+            "requested_at": {
+              "type": "string"
+            },
+            "A.4": {
+              "type": "string"
+            },
+            "A.4.1": {
+              "type": "string"
+            },
+            "StandardsPayloadReceived": {
+              "type": "string"
+            },
+            "standard": {
+              "type": "string"
+            },
+            "standard_version": {
+              "type": "string"
+            },
+            "raw_payload_reference": {
+              "type": "string"
+            },
+            "raw_payload_hash": {
+              "type": "string"
+            },
+            "received_at": {
+              "type": "string"
+            },
+            "StandardsPayloadClassified": {
+              "type": "string"
+            },
+            "classification_key": {
+              "type": "string"
+            },
+            "classification_value": {
+              "type": "string"
+            },
+            "tool_id": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "attempt_id",
+            "submitted_at",
+            "submission_reference",
+            "AssessmentScoreSuperseded",
+            "Required",
+            "attempt_id",
+            "superseded_score_fact_id",
+            "new_score",
+            "reason_code",
+            "A.3.2",
+            "RegradeRequested",
+            "Required",
+            "attempt_id",
+            "requested_by",
+            "reason_code",
+            "requested_at",
+            "A.4",
+            "A.4.1",
+            "StandardsPayloadReceived",
+            "Required",
+            "standard",
+            "standard_version",
+            "raw_payload_reference",
+            "raw_payload_hash",
+            "received_at",
+            "StandardsPayloadClassified",
+            "Required",
+            "standard",
+            "standard_version",
+            "classification_key",
+            "classification_value",
+            "tool_id",
+            "raw_payload_reference",
+            "raw_payload_hash"
+          ]
+        }
+      },
+      "required": [
+        "payload"
+      ]
+    }
+  ]
+}
