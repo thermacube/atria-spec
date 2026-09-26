@@ -1,0 +1,233 @@
+openapi: 3.1.0
+info:
+  title: Quorum OpenAI-Compatible API
+  version: "0.1.0"
+  description: >
+    OpenAI-compatible façade for Quorum. Implements a practical subset of
+    POST /v1/chat/completions with streaming (SSE) for use with Jan/LM Studio and SDKs.
+servers:
+  - url: https://ai.thermacube.internal
+    description: Internal/VPN base URL
+security:
+  - bearerAuth: []
+tags:
+  - name: openai
+    description: OpenAI-compatible endpoints
+
+paths:
+  /v1/chat/completions:
+    post:
+      tags: [openai]
+      summary: Create a chat completion (OpenAI-compatible subset)
+      operationId: createChatCompletion
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ChatCompletionRequest"
+      responses:
+        "200":
+          description: Chat completion response (non-streaming)
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ChatCompletionResponse"
+        "401":
+          description: Unauthorized
+        "413":
+          description: Payload too large
+        "429":
+          description: Rate limited
+        "500":
+          description: Server error
+
+  /healthz:
+    get:
+      tags: [openai]
+      summary: Liveness probe
+      operationId: healthz
+      security: []
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HealthResponse"
+
+  /readyz:
+    get:
+      tags: [openai]
+      summary: Readiness probe
+      operationId: readyz
+      security: []
+      responses:
+        "200":
+          description: Ready
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HealthResponse"
+        "503":
+          description: Not ready
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+
+  schemas:
+    HealthResponse:
+      type: object
+      additionalProperties: false
+      properties:
+        status:
+          type: string
+          enum: [ok]
+        service:
+          type: string
+        version:
+          type: string
+      required: [status, service, version]
+
+    ChatCompletionRequest:
+      type: object
+      additionalProperties: false
+      properties:
+        model:
+          type: string
+          description: >
+            Logical model selector. Quorum maps this to persona/capability (e.g., "architect", "developer", "critic").
+        messages:
+          type: array
+          minItems: 1
+          items:
+            $ref: "#/components/schemas/ChatMessage"
+        temperature:
+          type: number
+          minimum: 0
+          maximum: 2
+          default: 0.7
+        top_p:
+          type: number
+          minimum: 0
+          maximum: 1
+          default: 1
+        max_tokens:
+          type: integer
+          minimum: 1
+          description: Max tokens to generate (best-effort).
+        stream:
+          type: boolean
+          default: false
+          description: When true, response MUST be Server-Sent Events (SSE) chunks.
+        stop:
+          oneOf:
+            - type: string
+            - type: array
+              items: { type: string }
+        user:
+          type: string
+          description: Optional end-user identifier (for audit correlation).
+        metadata:
+          type: object
+          description: >
+            Optional extension object for Quorum routing (library_id, job_mode, etc.).
+          additionalProperties: true
+      required: [model, messages]
+
+    ChatMessage:
+      type: object
+      additionalProperties: false
+      properties:
+        role:
+          type: string
+          enum: [system, user, assistant, tool]
+        content:
+          oneOf:
+            - type: string
+            - type: array
+              description: >
+                Content parts (future-proof). Many clients will send plain string; array is accepted for compatibility.
+              items:
+                $ref: "#/components/schemas/ContentPart"
+        name:
+          type: string
+          description: Optional name for the participant (rarely used).
+        tool_call_id:
+          type: string
+          description: Present when role=tool to associate tool output with a tool call.
+      required: [role, content]
+
+    ContentPart:
+      type: object
+      additionalProperties: false
+      properties:
+        type:
+          type: string
+          enum: [text]
+        text:
+          type: string
+      required: [type, text]
+
+    ChatCompletionResponse:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type: string
+          description: Unique completion id
+        object:
+          type: string
+          enum: [chat.completion]
+        created:
+          type: integer
+          description: Unix timestamp seconds
+        model:
+          type: string
+          description: Echoes requested logical model id
+        choices:
+          type: array
+          items:
+            $ref: "#/components/schemas/ChatCompletionChoice"
+        usage:
+          $ref: "#/components/schemas/Usage"
+      required: [id, object, created, model, choices]
+
+    ChatCompletionChoice:
+      type: object
+      additionalProperties: false
+      properties:
+        index:
+          type: integer
+        message:
+          $ref: "#/components/schemas/ChatMessage"
+        finish_reason:
+          type: string
+          enum: [stop, length, content_filter, tool_calls]
+      required: [index, message, finish_reason]
+
+    Usage:
+      type: object
+      additionalProperties: false
+      properties:
+        prompt_tokens:
+          type: integer
+        completion_tokens:
+          type: integer
+        total_tokens:
+          type: integer
+      required: [prompt_tokens, completion_tokens, total_tokens]
+
+x-quorum-notes:
+  streaming:
+    format: >
+      When stream=true, this endpoint returns text/event-stream. Each event's data line
+      is a JSON object shaped like OpenAI chat.completion.chunk. Terminate with data: [DONE].
+  implementation:
+    note: >
+      The RoadRunner+PHP generated controller should delegate to Quorum\Handlers\ChatCompletionsHandler.
