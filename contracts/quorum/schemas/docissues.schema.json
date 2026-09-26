@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://thermacube.internal/schemas/docissues.schema.json",
+  "title": "DocIssues",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "doc_id": {
+      "type": "string"
+    },
+    "issues": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "issue_id": {
+            "type": "string"
+          },
+          "severity": {
+            "type": "string",
+            "enum": [
+              "critical",
+              "major",
+              "minor",
+              "note"
+            ]
+          },
+          "category": {
+            "type": "string",
+            "description": "naming|schema|logic|completeness|security|other"
+          },
+          "claim": {
+            "type": "string"
+          },
+          "evidence_refs": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "recommended_fix": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "severity",
+          "claim"
+        ]
+      }
+    }
+  },
+  "required": [
+    "doc_id",
+    "issues"
+  ]
+}
