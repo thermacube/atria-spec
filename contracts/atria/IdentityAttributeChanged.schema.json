@@ -1,0 +1,84 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://thermacube.org/atria/schemas/subtypes/IdentityAttributeChanged.schema.json",
+  "title": "IdentityAttributeChanged (FACT) message",
+  "allOf": [
+    {
+      "$ref": "../envelope.schema.json"
+    },
+    {
+      "type": "object",
+      "properties": {
+        "message_type": {
+          "const": "FACT"
+        },
+        "subtype": {
+          "const": "IdentityAttributeChanged"
+        },
+        "payload": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "identity_id": {
+              "type": "string"
+            },
+            "attribute_name": {
+              "type": "string"
+            },
+            "prior_value_reference": {
+              "type": "string"
+            },
+            "new_value_reference": {
+              "type": "string"
+            },
+            "authority_source": {
+              "type": "string"
+            },
+            "changed_at": {
+              "type": "string"
+            },
+            "TenantCreated": {
+              "type": "string"
+            },
+            "Required": {
+              "type": "string"
+            },
+            "tenant_id": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "created_at": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "created_by": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "provisioning_request_id": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          "required": [
+            "identity_id",
+            "attribute_name",
+            "prior_value_reference",
+            "new_value_reference",
+            "authority_source",
+            "changed_at",
+            "TenantCreated",
+            "Required",
+            "tenant_id",
+            "created_at",
+            "created_by",
+            "provisioning_request_id"
+          ]
+        }
+      },
+      "required": [
+        "payload"
+      ]
+    }
+  ]
+}
