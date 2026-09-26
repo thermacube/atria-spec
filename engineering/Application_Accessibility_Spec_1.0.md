@@ -536,6 +536,16 @@ Temporary implementation difficulty is not itself a standards exception.
 
 ---
 
+### 29.1 Internationalization and localization
+
+The Thermacube Application Internationalization & Localization Specification governs language and direction metadata, translated accessibility strings, and multilingual layout behavior.
+
+Accessibility remains the higher-precedence requirement where the standards overlap.
+
+A localized interface is non-conforming when visible text is translated but accessible names, errors, status announcements, alternative text, iframe titles, document language, or language-of-parts metadata remain incorrect.
+
+---
+
 ## 30. Application adoption
 
 ### 30.1 Atria
