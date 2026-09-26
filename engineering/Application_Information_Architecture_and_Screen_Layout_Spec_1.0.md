@@ -1098,7 +1098,21 @@ Bridge uses wide operational layouts for Registry, payments, reports, imports, a
 
 ### 57.3 Comms
 
-Standalone Comms uses the same brand/global hierarchy. When embedded, the collapsed Messages/Chat/Voice controls occupy the host global-utility position and the expanded application uses the contextual right-side surface.
+Standalone Comms uses the same brand/global hierarchy. When embedded, the collapsed Messages/Chat/Voice controls occupy the host global-utility position and the expanded application uses the contextual inline-end surface (right side in LTR, left side in RTL).
+
+### 57.4 Writing direction and logical placement
+
+The Thermacube Application Internationalization & Localization Specification governs writing direction.
+
+Normative placement is logical:
+
+- brand/product identity: inline start;
+- global utilities/account/Comms: inline end;
+- local section navigation: inline start when present;
+- contextual sidecar: inline end;
+- footer: block end.
+
+Physical left/right descriptions elsewhere in this specification illustrate the normal LTR arrangement and MUST be interpreted through these logical positions for RTL interfaces.
 
 ---
 
@@ -1108,9 +1122,9 @@ An application conforms to Thermacube Application Information Architecture & Scr
 
 1. navigation reflects recognizable user tasks/information domains;
 2. labels provide strong information scent;
-3. brand is upper left and global utilities are upper right;
+3. brand is at inline start and global utilities are at inline end for the active writing direction;
 4. primary navigation is conventional and consistent;
-5. local left navigation appears only when section depth justifies it;
+5. local inline-start navigation appears only when section depth justifies it;
 6. global vs local search are distinguished;
 7. account and Comms placement follow the shared shell;
 8. page/system notifications appear at the appropriate hierarchy;
