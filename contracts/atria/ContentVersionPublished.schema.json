@@ -1,0 +1,64 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://thermacube.org/atria/schemas/subtypes/ContentVersionPublished.schema.json",
+  "title": "ContentVersionPublished (FACT) message",
+  "allOf": [
+    {
+      "$ref": "../envelope.schema.json"
+    },
+    {
+      "type": "object",
+      "properties": {
+        "message_type": {
+          "const": "FACT"
+        },
+        "subtype": {
+          "const": "ContentVersionPublished"
+        },
+        "payload": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "content_id": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "content_version_id": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "version": {
+              "type": "string"
+            },
+            "artifact_ref": {
+              "type": "string"
+            },
+            "artifact_hash": {
+              "type": "string"
+            },
+            "published_by": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "published_at": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          "required": [
+            "content_id",
+            "content_version_id",
+            "version",
+            "artifact_ref",
+            "artifact_hash",
+            "published_by",
+            "published_at"
+          ]
+        }
+      },
+      "required": [
+        "payload"
+      ]
+    }
+  ]
+}
