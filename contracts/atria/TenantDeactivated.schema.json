@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://thermacube.org/atria/schemas/subtypes/TenantDeactivated.schema.json",
+  "title": "TenantDeactivated (FACT) message",
+  "allOf": [
+    {
+      "$ref": "../envelope.schema.json"
+    },
+    {
+      "type": "object",
+      "properties": {
+        "message_type": {
+          "const": "FACT"
+        },
+        "subtype": {
+          "const": "TenantDeactivated"
+        },
+        "payload": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "tenant_id": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "deactivated_at": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "deactivated_by": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "reason_code": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "tenant_id",
+            "deactivated_at",
+            "deactivated_by",
+            "reason_code"
+          ]
+        }
+      },
+      "required": [
+        "payload"
+      ]
+    }
+  ]
+}
