@@ -1,0 +1,172 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://thermacube.internal/schemas/docfacts.schema.json",
+  "title": "DocFacts",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "doc_id": {
+      "type": "string"
+    },
+    "doc_type": {
+      "type": "string",
+      "description": "outline|source|template|rubric|reference|spec"
+    },
+    "version": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "terms": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "term": {
+            "type": "string"
+          },
+          "definition": {
+            "type": "string"
+          },
+          "source_ref": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "term",
+          "definition"
+        ]
+      }
+    },
+    "entities": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "requirements": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "req_id": {
+            "type": "string"
+          },
+          "statement": {
+            "type": "string"
+          },
+          "priority": {
+            "type": "string",
+            "enum": [
+              "must",
+              "should",
+              "may",
+              "unknown"
+            ]
+          },
+          "source_ref": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "statement"
+        ]
+      }
+    },
+    "interfaces": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "direction": {
+            "type": "string",
+            "enum": [
+              "inbound",
+              "outbound",
+              "internal",
+              "unknown"
+            ]
+          },
+          "contract": {
+            "type": "string"
+          },
+          "source_ref": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "name"
+        ]
+      }
+    },
+    "schemas": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "format": {
+            "type": "string",
+            "enum": [
+              "json",
+              "yaml",
+              "sql",
+              "other"
+            ]
+          },
+          "body": {
+            "type": "string"
+          },
+          "source_ref": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "name",
+          "body"
+        ]
+      }
+    },
+    "invariants": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "statement": {
+            "type": "string"
+          },
+          "scope": {
+            "type": "string"
+          },
+          "source_ref": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "statement"
+        ]
+      }
+    },
+    "assumptions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "required": [
+    "doc_id",
+    "doc_type"
+  ]
+}
