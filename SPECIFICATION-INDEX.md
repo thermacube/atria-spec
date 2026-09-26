@@ -19,6 +19,7 @@ This index describes the governing material currently preserved in `thermacube/a
 - `engineering/Application_UI_Design_Spec_1.0.md`
 - `engineering/HTMX_Integration_Spec_1.0.md`
 - `engineering/Application_Information_Architecture_and_Screen_Layout_Spec_1.0.md`
+- `engineering/Application_Internationalization_and_Localization_Spec_1.0.md`
 
 ## Module engineering specifications
 
