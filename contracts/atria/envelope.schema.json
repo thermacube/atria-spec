@@ -1,0 +1,179 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://thermacube.org/atria/schemas/envelope.schema.json",
+  "title": "Atria Standard Message Envelope",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "message_id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "message_type": {
+      "type": "string",
+      "enum": [
+        "FACT",
+        "CLAIM",
+        "REQUEST",
+        "DECISION"
+      ]
+    },
+    "subtype": {
+      "type": "string",
+      "minLength": 1
+    },
+    "tenant_id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "subject_id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "enrollment_context_id": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "uuid"
+    },
+    "workflow_version": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "activity_uuid": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "uuid"
+    },
+    "course_id": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "uuid"
+    },
+    "occurred_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "recorded_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "source": {
+      "type": "string",
+      "minLength": 1
+    },
+    "correlation_id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "causation_id": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "uuid"
+    },
+    "schema_version": {
+      "type": "string",
+      "minLength": 1
+    },
+    "payload": {
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "payload_ref": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "payload_hash": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "minLength": 16
+    },
+    "idempotency_key": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "minLength": 1
+    },
+    "confidentiality_level": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "enum": [
+        "public",
+        "internal",
+        "restricted",
+        null
+      ]
+    },
+    "retention_class": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "enum": [
+        "standard",
+        "long-term",
+        "legal-hold",
+        null
+      ]
+    },
+    "signature": {
+      "type": [
+        "object",
+        "null"
+      ]
+    }
+  },
+  "required": [
+    "message_id",
+    "message_type",
+    "subtype",
+    "tenant_id",
+    "subject_id",
+    "enrollment_context_id",
+    "workflow_version",
+    "activity_uuid",
+    "course_id",
+    "occurred_at",
+    "recorded_at",
+    "source",
+    "correlation_id",
+    "causation_id",
+    "schema_version",
+    "payload"
+  ],
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "payload": {
+            "type": "null"
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "payload_ref",
+          "payload_hash"
+        ]
+      }
+    }
+  ]
+}
