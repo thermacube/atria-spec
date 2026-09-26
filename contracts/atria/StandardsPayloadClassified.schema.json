@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://thermacube.org/atria/schemas/subtypes/StandardsPayloadClassified.schema.json",
+  "title": "StandardsPayloadClassified (FACT) message",
+  "allOf": [
+    {
+      "$ref": "../envelope.schema.json"
+    },
+    {
+      "type": "object",
+      "properties": {
+        "message_type": {
+          "const": "FACT"
+        },
+        "subtype": {
+          "const": "StandardsPayloadClassified"
+        },
+        "payload": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "standard": {
+              "type": "string"
+            },
+            "standard_version": {
+              "type": "string"
+            },
+            "classification_key": {
+              "type": "string"
+            },
+            "classification_value": {
+              "type": "string"
+            },
+            "tool_id": {
+              "type": "string"
+            },
+            "raw_payload_reference": {
+              "type": "string"
+            },
+            "raw_payload_hash": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "standard",
+            "standard_version",
+            "classification_key",
+            "classification_value",
+            "tool_id",
+            "raw_payload_reference",
+            "raw_payload_hash"
+          ]
+        }
+      },
+      "required": [
+        "payload"
+      ]
+    }
+  ]
+}
