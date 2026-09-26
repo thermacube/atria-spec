@@ -1173,6 +1173,16 @@ Applications update deliberately.
 
 ---
 
+### 48.1 Internationalization and localization
+
+The Thermacube Application Internationalization & Localization Specification governs multilingual presentation requirements.
+
+TMUI and application-specific CSS MUST remain direction-neutral where the layout meaning is logical, prefer CSS logical properties, tolerate translated text expansion, support system-font fallback for required scripts, and localize the accessibility surface together with visible UI text.
+
+Localization MUST NOT create an alternate component system, RTL-only component family, or remote font/runtime dependency.
+
+---
+
 ## 49. Initial application adoption
 
 ### 49.1 Atria
@@ -1205,8 +1215,9 @@ An application conforms to Thermacube Application UI Design Specification v1.0 w
 6. custom JavaScript is justified and narrowly scoped;
 7. production has no uncontrolled remote UI dependency;
 8. accessibility requirements are satisfied through the shared accessibility specification;
-9. application-specific CSS follows TMUI tokens and conventions;
-10. testing covers representative shared components and application workflows.
+9. internationalization/localization requirements are satisfied through the shared i18n/l10n specification;
+10. application-specific CSS follows TMUI tokens and conventions;
+11. testing covers representative shared components and application workflows.
 
 ---
 
