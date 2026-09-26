@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": [
+    "cases"
+  ],
+  "properties": {
+    "cases": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "name",
+          "subjects",
+          "action",
+          "object",
+          "legacyDecision"
+        ],
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "subjects": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "action": {
+            "type": "string"
+          },
+          "object": {
+            "type": "string"
+          },
+          "context": {
+            "type": "object"
+          },
+          "legacyDecision": {
+            "enum": [
+              "allow",
+              "deny",
+              "requires_obligation"
+            ]
+          }
+        }
+      }
+    }
+  }
+}
