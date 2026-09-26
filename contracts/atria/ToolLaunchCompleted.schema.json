@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://thermacube.org/atria/schemas/subtypes/ToolLaunchCompleted.schema.json",
+  "title": "ToolLaunchCompleted (FACT) message",
+  "allOf": [
+    {
+      "$ref": "../envelope.schema.json"
+    },
+    {
+      "type": "object",
+      "properties": {
+        "message_type": {
+          "const": "FACT"
+        },
+        "subtype": {
+          "const": "ToolLaunchCompleted"
+        },
+        "payload": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "tool_type": {
+              "type": "string",
+              "enum": [
+                "LTI",
+                "xAPI",
+                "other"
+              ]
+            },
+            "tool_instance_id": {
+              "type": "string"
+            },
+            "launch_id": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "raw_payload_reference": {
+              "type": "string"
+            },
+            "raw_payload_hash": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "tool_type",
+            "tool_instance_id",
+            "launch_id"
+          ]
+        }
+      },
+      "required": [
+        "payload"
+      ]
+    }
+  ]
+}
