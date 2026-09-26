@@ -1,0 +1,127 @@
+[
+  {
+    "subtype": "AssessmentAttemptCompleted",
+    "message_type": "FACT",
+    "schema": "schemas/subtypes/AssessmentAttemptCompleted.schema.json"
+  },
+  {
+    "subtype": "AssessmentAttemptStarted",
+    "message_type": "FACT",
+    "schema": "schemas/subtypes/AssessmentAttemptStarted.schema.json"
+  },
+  {
+    "subtype": "AssessmentAttemptSubmitted",
+    "message_type": "FACT",
+    "schema": "schemas/subtypes/AssessmentAttemptSubmitted.schema.json"
+  },
+  {
+    "subtype": "AssessmentScoreComputed",
+    "message_type": "FACT",
+    "schema": "schemas/subtypes/AssessmentScoreComputed.schema.json"
+  },
+  {
+    "subtype": "AssessmentScoreSuperseded",
+    "message_type": "FACT",
+    "schema": "schemas/subtypes/AssessmentScoreSuperseded.schema.json"
+  },
+  {
+    "subtype": "ContentAccessRecorded",
+    "message_type": "FACT",
+    "schema": "schemas/subtypes/ContentAccessRecorded.schema.json"
+  },
+  {
+    "subtype": "ContentVersionResolved",
+    "message_type": "FACT",
+    "schema": "schemas/subtypes/ContentVersionResolved.schema.json"
+  },
+  {
+    "subtype": "ContentVersionPublished",
+    "message_type": "FACT",
+    "schema": "schemas/subtypes/ContentVersionPublished.schema.json"
+  },
+  {
+    "subtype": "CourseVersionPublished",
+    "message_type": "FACT",
+    "schema": "schemas/subtypes/CourseVersionPublished.schema.json"
+  },
+  {
+    "subtype": "DecisionRecorded",
+    "message_type": "DECISION",
+    "schema": "schemas/subtypes/DecisionRecorded.schema.json"
+  },
+  {
+    "subtype": "EnrollmentMigrated",
+    "message_type": "FACT",
+    "schema": "schemas/subtypes/EnrollmentMigrated.schema.json"
+  },
+  {
+    "subtype": "IdentityAttributeChanged",
+    "message_type": "FACT",
+    "schema": "schemas/subtypes/IdentityAttributeChanged.schema.json"
+  },
+  {
+    "subtype": "LearningObjectCreated",
+    "message_type": "FACT",
+    "schema": "schemas/subtypes/LearningObjectCreated.schema.json"
+  },
+  {
+    "subtype": "LearningObjectVersionPublished",
+    "message_type": "FACT",
+    "schema": "schemas/subtypes/LearningObjectVersionPublished.schema.json"
+  },
+  {
+    "subtype": "ManualOverrideRequested",
+    "message_type": "REQUEST",
+    "schema": "schemas/subtypes/ManualOverrideRequested.schema.json"
+  },
+  {
+    "subtype": "ProgressionStateUpdated",
+    "message_type": "DECISION",
+    "schema": "schemas/subtypes/ProgressionStateUpdated.schema.json"
+  },
+  {
+    "subtype": "RegradeRequested",
+    "message_type": "REQUEST",
+    "schema": "schemas/subtypes/RegradeRequested.schema.json"
+  },
+  {
+    "subtype": "StandardsPayloadClassified",
+    "message_type": "FACT",
+    "schema": "schemas/subtypes/StandardsPayloadClassified.schema.json"
+  },
+  {
+    "subtype": "StandardsPayloadReceived",
+    "message_type": "FACT",
+    "schema": "schemas/subtypes/StandardsPayloadReceived.schema.json"
+  },
+  {
+    "subtype": "StandardsPayloadRejected",
+    "message_type": "FACT",
+    "schema": "schemas/subtypes/StandardsPayloadRejected.schema.json"
+  },
+  {
+    "subtype": "TenantArchived",
+    "message_type": "FACT",
+    "schema": "schemas/subtypes/TenantArchived.schema.json"
+  },
+  {
+    "subtype": "TenantCreated",
+    "message_type": "FACT",
+    "schema": "schemas/subtypes/TenantCreated.schema.json"
+  },
+  {
+    "subtype": "TenantDeactivated",
+    "message_type": "FACT",
+    "schema": "schemas/subtypes/TenantDeactivated.schema.json"
+  },
+  {
+    "subtype": "ToolCompletionClaimReceived",
+    "message_type": "CLAIM",
+    "schema": "schemas/subtypes/ToolCompletionClaimReceived.schema.json"
+  },
+  {
+    "subtype": "ToolLaunchCompleted",
+    "message_type": "FACT",
+    "schema": "schemas/subtypes/ToolLaunchCompleted.schema.json"
+  }
+]
