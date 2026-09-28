@@ -27,6 +27,8 @@ The current supplied Atria constitutional engineering line culminates in `Atria_
 
 The shared **Application Request Perimeter Specification v1.0** and Atria adoption document are maintained alongside these governing specifications and apply to the Atria runtime boundary.
 
+The shared **Mutation Integrity and Replay Prevention Specification v1.0** defines the cross-application state-change contract: explicit mutation classes, browser CSRF integrity, server-issued mutation identity, payload binding, durable idempotency, atomic one-time capabilities, provider-event deduplication, retry-safe external handoff, concurrency guarantees, and persistent-worker-safe replay protection. Its Atria adoption document defines the platform/module boundary.
+
 The shared **Application Accessibility Specification v1.0** establishes WCAG 2.2 Level AA as the common product target, with WAI-ARIA 1.2 semantics, ARIA APG implementation guidance, and WCAG-EM 2.0 evaluation methodology. Atria's adoption document defines platform/module responsibilities.
 
 The shared **Application UI Design Specification v1.0** defines Thermacube Minimal UI (TMUI): semantic HTML, locally owned CSS/tokens/assets, HTMX-driven progressive interaction, minimal JavaScript, zero uncontrolled remote UI dependencies, and a compact cross-application visual language. Its reference implementation lives in `thermacube/tmui`.
