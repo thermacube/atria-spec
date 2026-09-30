@@ -20,6 +20,16 @@ Fewest lines means fewest **necessary, readable** lines—not condensed control 
 
 A project-specific architecture, security, configuration, API, or upgrade specification remains authoritative for that project. Adopt this standard incrementally for existing code; do not destabilize working systems through cosmetic rewrites.
 
+## 1.1 Where Go is the preferred language
+
+**Use Go as the default for new system daemons and system-level utilities** when the required operating-system, networking, process-control, deployment, or long-running workload can be implemented cleanly with Go. Examples include installers/updaters, host collectors, service supervisors, security testing daemons, and other standalone system tools. Prefer small, self-contained binaries and an explicit operating-system service lifecycle.
+
+**In applications served by RoadRunner, retain procedural PHP as the normal application and domain language.** Use Go selectively when a specific hot path demands substantially better performance, lower memory usage, or more predictable resource consumption than the equivalent PHP implementation in the existing RoadRunner context can deliver. Where the workload characteristics make the benefit obvious, a small Go implementation may be justified before a production bottleneck appears; otherwise benchmark or profile both options under representative workloads.
+
+A Go hot path must have a narrow, documented call/data boundary. Prefer an appropriate in-process or existing RoadRunner integration over introducing new network services, routing layers, or deployment dependencies merely to switch languages. Measure end-to-end overhead, including serialization, handoff, concurrency, memory, and operational complexity, rather than comparing isolated function execution speed.
+
+**Do not migrate ordinary PHP functionality to Go solely because Go may be faster.** Retain a simpler procedural PHP implementation when it meets the performance budget, and document the justification for each mixed-language boundary.
+
 ## 2. Reductive design
 
 - Implement current requirements only. Do not add speculative frameworks, plugin systems, interfaces, configuration switches, extension points, or future-module scaffolding.
