@@ -49,8 +49,12 @@ The shared **Application Internationalization & Localization Specification v1.0*
 The following versioned standards govern **new and materially modified code**
 across applicable Thermacube implementation repositories:
 
-- [Thermacube Go Coding Standard v1.0](engineering/Thermacube_Go_Coding_Standard_1.0.md): reductive design, low CPU/memory impact, procedural/functional Go, explicit resource/failure boundaries, and excellent plain-English source documentation.
-- [Thermacube PHP Coding Standard v1.0](engineering/Thermacube_PHP_Coding_Standard_1.0.md): the same principles adapted to procedural PHP, protected PHP-file application configuration, explicit application boundaries, and human-readable file/function contracts.
+- [Thermacube Go Coding Standard v1.1](engineering/Thermacube_Go_Coding_Standard_1.1.md): governing reductive, procedural/functional Go, protected native filesystem configuration, operational state and documentation contracts, qualified Atria exception, and OWASP-derived secure coding.
+- [Thermacube PHP Coding Standard v1.1](engineering/Thermacube_PHP_Coding_Standard_1.1.md): governing procedural/functional PHP, secure PHP-file application configuration (including protected in-web-root placement when necessary), documentation and maintainability release gates, qualified Atria exception, and OWASP-derived secure coding.
+
+Atria's limited [RoadRunner/Spiral dependency exception](engineering/Atria_RoadRunner_Spiral_Dependency_Exception_1.0.md) permits reviewed individual Spiral components when they demonstrably simplify implementation behind narrow replaceable boundaries. It is not a general framework waiver.
+
+Version 1.0 of each standard is retained for revision history. Language-specific application configuration belongs to the application's own runtime; PHP-file configuration is mandatory for PHP applications, not for Go or other independent daemons.
 
 Implementation repos should link to the canonical versioned standards rather
 than copying them. Project-specific architecture, security, configuration,
