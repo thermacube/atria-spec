@@ -22,6 +22,7 @@ This index describes the governing material currently preserved in `thermacube/a
 - `engineering/HTMX_Integration_Spec_1.0.md`
 - `engineering/Application_Information_Architecture_and_Screen_Layout_Spec_1.0.md`
 - `engineering/Application_Internationalization_and_Localization_Spec_1.0.md`
+- `engineering/Atria_RoadRunner_Spiral_Dependency_Exception_1.0.md` — project-specific, conditional permission for reviewed Spiral components alongside existing RoadRunner usage
 - `engineering/Thermacube_Go_Coding_Standard_1.1.md` — **current** governing Go standard, including secure coding, ownership documentation and native daemon configuration
 - `engineering/Thermacube_PHP_Coding_Standard_1.1.md` — **current** governing PHP standard, including secure coding, documentation gates and protected PHP configuration
 - `engineering/Thermacube_Go_Coding_Standard_1.0.md` and `engineering/Thermacube_PHP_Coding_Standard_1.0.md` — retained prior revisions
