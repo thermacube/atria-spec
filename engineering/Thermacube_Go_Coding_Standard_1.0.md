@@ -29,7 +29,24 @@ A project-specific architecture, security, configuration, API, or upgrade specif
 - Remove obsolete code and duplicative paths when safely replacing them. Keep compatibility only when the product contract requires it.
 - Avoid reinventing existing reliable standard-library functionality.
 
-### 2.1 CPU, memory, and I/O
+### 2.1 External dependencies, ownership, and forks
+
+**Dependency avoidance is the default.** Thermacube prefers functionality it owns and can maintain over a runtime, release, or security posture that depends on the continued existence, release schedule, compatibility, packaging service, or goodwill of an outside project.
+
+Apply this decision order before adding third-party code:
+
+1. **Avoid the dependency** if standard-library or already-maintained project code solves the actual requirement simply and safely.
+2. **Keep a narrow locally maintained implementation** when the need is small, well understood, and lower risk than adopting a whole package.
+3. **Prefer a reviewed, license-compliant fork or vendored source maintained as part of the Thermacube codebase** when substantial open-source functionality is genuinely necessary. Build, test, audit, and release it under our control rather than silently following an upstream moving target.
+4. **Permit an externally managed dependency only as a documented exception** when owning it would be impractical, legally incompatible, materially riskier, or more costly than depending on its maintained upstream. Explain the tradeoff and specify the containment and exit plan.
+
+Forking does **not** eliminate maintenance or security work; it transfers responsibility to us. Every adopted fork or vendored component must have a named owning repository, preserved provenance, reviewed license and notice requirements, a pinned upstream version/commit, local build and test coverage, vulnerability monitoring, and an explicit process for reviewing and importing upstream security and compatibility fixes. Do not fork merely to rename a dependency while continuing to rely on upstream unreviewed binaries or automatic updates.
+
+Treat transitive dependencies and build-time tools as dependencies too. Avoid uncontrolled network downloads during production build, install, update, or normal execution where practicable. Pin approved sources and maintain reproducible, auditable builds.
+
+Document the rationale whenever choosing outside code: required capability, alternatives considered, license, maintenance owner, supply-chain exposure, update policy, and what happens if the upstream project disappears. Do not reimplement mature security-sensitive primitives or protocols without sufficient expertise and a stronger reviewed alternative; security and correctness still outrank independence.
+
+### 2.2 CPU, memory, and I/O
 
 - Choose an algorithm appropriate to real data size and execution frequency.
 - Prefer incremental readers, writers, and streaming when whole-dataset materialization is unnecessary. Bound input, response, queue, buffer, retry, and cache sizes where appropriate.
