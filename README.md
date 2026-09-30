@@ -42,3 +42,17 @@ The shared **Application Information Architecture & Screen Layout Specification 
 
 
 The shared **Application Internationalization & Localization Specification v1.0** defines the cross-application multilingual contract: Unicode/UTF-8, BCP 47 locale identity, language/direction metadata, RTL/logical layout, locale selection and persistence, server-side message catalogs, CLDR-compatible plural/date/number/currency semantics, localized accessibility metadata, HTMX locale consistency, pseudo-localization/text-expansion testing, and local/versioned translation assets.
+
+
+## Shared language coding standards
+
+The following versioned standards govern **new and materially modified code**
+across applicable Thermacube implementation repositories:
+
+- [Thermacube Go Coding Standard v1.0](engineering/Thermacube_Go_Coding_Standard_1.0.md): reductive design, low CPU/memory impact, procedural/functional Go, explicit resource/failure boundaries, and excellent plain-English source documentation.
+- [Thermacube PHP Coding Standard v1.0](engineering/Thermacube_PHP_Coding_Standard_1.0.md): the same principles adapted to procedural PHP, protected PHP-file application configuration, explicit application boundaries, and human-readable file/function contracts.
+
+Implementation repos should link to the canonical versioned standards rather
+than copying them. Project-specific architecture, security, configuration,
+domain, and upgrade specifications continue to apply. These standards do not
+mandate disruptive cosmetic rewrites of existing working code.
