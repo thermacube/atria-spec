@@ -22,6 +22,8 @@ This index describes the governing material currently preserved in `thermacube/a
 - `engineering/HTMX_Integration_Spec_1.0.md`
 - `engineering/Application_Information_Architecture_and_Screen_Layout_Spec_1.0.md`
 - `engineering/Application_Internationalization_and_Localization_Spec_1.0.md`
+- `engineering/Thermacube_Go_Coding_Standard_1.0.md` — governing reductive, procedural/functional, documented Go implementation standard
+- `engineering/Thermacube_PHP_Coding_Standard_1.0.md` — governing reductive, procedural/functional, documented PHP implementation standard
 
 ## Module engineering specifications
 
